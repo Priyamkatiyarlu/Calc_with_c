@@ -1,20 +1,15 @@
 #include <stdio.h>
 #include <stdio.h>
-#define Esc 275
-int matrixsubstraction(){
-    int x1,y1,x2,y2,sum;
-    printf("Enter no of rows of first matrix=");
-    scanf("%d",&x1);
-    printf("Enter no of columns of first matrix=");
-    scanf("%d",&y1);
-    printf("Enter no of rows of second matrix=");
-    scanf("%d",&x2);
-    printf("Enter no of columns of second matrix=");
-    scanf("%d",&y2);
-    int arr1[x1][y1];
-    int arr2[x2][y2];
-    int res[x1][y1];
-    if (x1==x2 && y1==y2){    //Checking for desired condition
+#define Esc 27
+int printresult(int x1,int y2,int res[x1][y2]){
+        for(int i=0; i<x1; i++){
+        printf("\n");
+        for(int j=0; j<y2; j++)
+        printf("%d\t",res[i][j]);
+        }
+        
+    }
+   int matrixinput(int x1,int y1,int x2,int y2,int arr1[x1][y1],int arr2[x2][y2]){
     for(int i=0; i<x1; i++){
         for(int j=0; j<y1; j++){
         printf("Enter arr[%d][%d] element of first matrix=",i,j);
@@ -27,6 +22,25 @@ int matrixsubstraction(){
         scanf("%d",&arr2[i][j]);
         }
     }
+    }
+int matrixrc(int *x1,int *y1,int *x2,int *y2){
+    printf("Enter no of rows=");
+    scanf("%d",&*x1);
+    printf("Enter no of columns=");
+    scanf("%d",&*y1);
+    printf("Enter no of rows of second matrix=");
+    scanf("%d",&*x2);
+    printf("Enter no of columns of second matrix=");
+    scanf("%d",&*y2);
+}
+int matrixsubstraction(){
+    int x1,y1,x2,y2,sum;
+    matrixrc(&x1,&y1,&x2,&y2);
+    int arr1[x1][y1];
+    int arr2[x2][y2];
+    int res[x1][y1];
+    if (x1==x2 && y1==y2){    //Checking for desired condition
+    matrixinput(x1,y1,x2,y2,arr1,arr2);
     for(int i=0;i<x1;i++){         //computing for result
         for(int j=0; j<y2; j++){
                 res[i][j]=arr1[i][j]-arr2[i][j];
@@ -34,12 +48,7 @@ int matrixsubstraction(){
     }
     //printing result
     printf("\t\t\t\t\t\t\tSubstracted matrix\t\t\t\t\t\t\t");
-    for(int i=0; i<x1; i++){
-        printf("\n");
-        for(int j=0; j<y1; j++)
-        printf("%d\t",res[i][j]);
-        }
-        
+    printresult(x1,y2,res);
     }
     else{
         printf("\nMatrix cannot be Substracted\n");
@@ -47,42 +56,19 @@ int matrixsubstraction(){
 }
 int matrixaddition(){
     int x1,y1,x2,y2,sum;
-    printf("Enter no of rows of first matrix=");
-    scanf("%d",&x1);
-    printf("Enter no of columns of first matrix=");
-    scanf("%d",&y1);
-    printf("Enter no of rows of second matrix=");
-    scanf("%d",&x2);
-    printf("Enter no of columns of second matrix=");
-    scanf("%d",&y2);
+    matrixrc(&x1,&y1,&x2,&y2);
     int arr1[x1][y1];
     int arr2[x2][y2];
     int res[x1][y1];
     if (x1==x2 && y1==y2){   //checking for desired result
-    for(int i=0; i<x1; i++){
-        for(int j=0; j<y1; j++){
-        printf("Enter arr[%d][%d] element of first matrix=",i,j);
-        scanf("%d",&arr1[i][j]);
-        }
-    }
-    for(int i=0; i<x2; i++){
-        for(int j=0; j<y2; j++){
-        printf("Enter arr[%d][%d] element of second matrix=",i,j);
-        scanf("%d",&arr2[i][j]);
-        }
-    }
+    matrixinput(x1,y1,x2,y2,arr1,arr2);
     for(int i=0;i<x1;i++){
         for(int j=0; j<y2; j++){
                 res[i][j]=arr1[i][j]+arr2[i][j];
         }
     }
     printf("\t\t\t\t\t\t\tAdded matrix\t\t\t\t\t\t\t");
-    for(int i=0; i<x1; i++){       //printing desired result
-        printf("\n");
-        for(int j=0; j<y1; j++)
-        printf("%d\t",res[i][j]);
-        }
-        
+    printresult(x1,y2,res);
     }
     else{
         printf("Matrix cannot be added");
@@ -90,30 +76,12 @@ int matrixaddition(){
 }
 int matrixmultiplication(){
     int x1,y1,x2,y2,sum;
-    printf("Enter no of rows of first matrix=");
-    scanf("%d",&x1);
-    printf("Enter no of columns of first matrix=");
-    scanf("%d",&y1);
-    printf("Enter no of rows of second matrix=");
-    scanf("%d",&x2);
-    printf("Enter no of columns of second matrix=");
-    scanf("%d",&y2);
+    matrixrc(&x1,&y1,&x2,&y2);
     int arr1[x1][y1];
     int arr2[x2][y2];
     int res[x1][y2];
     if (y1==x2){
-    for(int i=0; i<x1; i++){
-        for(int j=0; j<y1; j++){
-        printf("Enter arr[%d][%d] element of first array=",i,j);
-        scanf("%d",&arr1[i][j]);
-        }
-    }
-    for(int i=0; i<x2; i++){
-        for(int j=0; j<y2; j++){
-        printf("Enter arr[%d][%d] element of array=",i,j);
-        scanf("%d",&arr2[i][j]);
-        }
-    }
+    matrixinput(x1,y1,x2,y2,arr1,arr2);
     for(int i=0;i<x1;i++){
         for(int j=0; j<y2; j++){
             sum=0;
@@ -124,12 +92,7 @@ int matrixmultiplication(){
         }
     }
     printf("\t\t\t\t\t\t\tMultiplied matrix\t\t\t\t\t\t\t");
-    for(int i=0; i<x1; i++){
-        printf("\n");
-        for(int j=0; j<y2; j++)
-        printf("%d\t",res[i][j]);
-        }
-        
+    printresult(x1,y2,res);
     }
     else{
         printf("Matrix cannot be multiplied");
