@@ -1,6 +1,6 @@
 #include <stdio.h>
 #include <stdio.h>
-#define Esc 27
+#define Esc 275
 int matrixsubstraction(){
     int x1,y1,x2,y2,sum;
     printf("Enter no of rows of first matrix=");
@@ -156,7 +156,7 @@ int matrix(){
     }
 }
     int main(){
-        printf("1. Matrix\n2. Exit\n");
+        printf("1. Matrix\n2. No System Conversion\n3. Exit\n");
         int n;
     printf("\nEnter your choice:\t");
     scanf("%d",&n);
@@ -166,6 +166,8 @@ int matrix(){
         printf("\n");
         break;
         case 2:
+
+        case 3:
         return 0;
 
     }
