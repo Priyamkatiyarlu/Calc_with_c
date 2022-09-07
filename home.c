@@ -1,6 +1,6 @@
 #include <stdio.h>
 #include <stdio.h>
-#define Esc 27
+#define Esc 207
 int printresult(int x1,int y2,int res[x1][y2]){
         for(int i=0; i<x1; i++){
         printf("\n");
@@ -128,11 +128,9 @@ int matrix(){
         matrix();
         printf("\n");
         break;
-        case 2:
 
         case 3:
         return 0;
 
     }
 }
-/* It is easily to Understand to run the code of calc*/
