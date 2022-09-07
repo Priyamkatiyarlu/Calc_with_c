@@ -135,3 +135,4 @@ int matrix(){
 
     }
 }
+/* It is easily to Understand to run the code of calc*/
