@@ -7,11 +7,23 @@ int printresult1(int x1,int y1,int arr1[x1][y1]){
         }
         
     }
-int matrixrc(int *x1,int *y1){
+int matrixrc1(int *x1,int *y1){
     printf("Enter no of rows=");
     scanf("%d",&*x1);
     printf("Enter no of columns=");
     scanf("%d",&*y1);
+}
+int matrixrc2(int *x2,int *y2){
+    printf("Enter no of rows=");
+    scanf("%d",&*x2);
+    printf("Enter no of columns=");
+    scanf("%d",&*y2);
+}
+int matrixrc3(int *x3,int *y3){
+    printf("Enter no of rows=");
+    scanf("%d",&*x3);
+    printf("Enter no of columns=");
+    scanf("%d",&*y3);
 }
    int matrixinput1(int x1,int y1,int arr1[x1][y1]){
     for(int i=0; i<x1; i++){
@@ -39,19 +51,19 @@ int matrixrc(int *x1,int *y1){
     }
     int matA(){
     int x1,y1;
-    matrixrc(&x1,&y1);
+    matrixrc1(&x1,&y1);
     int arr1[x1][y1];
     matrixinput1(x1,y1,arr1);
     }
     int matB(){
     int x2,y2;
-    matrixrc(&x2,&y2);
+    matrixrc2(&x2,&y2);
     int arr2[x2][y2];
     matrixinput2(x2,y2,arr2);
     }
     int matC(){
     int x3,y3;
-    matrixrc(&x3,&y3);
+    matrixrc3(&x3,&y3);
     int arr3[x3][y3];
     matrixinput3(x3,y3,arr3);
     }
