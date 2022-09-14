@@ -41,18 +41,6 @@ int matrixrc(int *x,int *y){
         }
         }
 }
-    int matA(){
-    matrixrc(&x1,&y1);
-    matrixinput(x1,y1,arr1);
-    }
-    int matB(){
-    matrixrc(&x2,&y2);
-    matrixinput(x2,y2,arr2);
-    }
-    int matC(){
-    matrixrc(&x3,&y3);
-    matrixinput(x3,y3,arr3);
-    }
     int printmatA(){
     printresult(x1,y1,arr1);
     }
@@ -69,13 +57,16 @@ int matrixrc(int *x,int *y){
     scanf("%d",&n);
     switch(n){
         case 1:
-        matA();
+        matrixrc(&x1,&y1);
+        matrixinput(x1,y1,arr1);
         break;
         case 2:
-        matB();
+        matrixrc(&x2,&y2);
+        matrixinput(x2,y2,arr2);
         break;
         case 3:
-        matC();
+        matrixrc(&x3,&y3);
+        matrixinput(x3,y3,arr3);
         break;
 
     }
@@ -126,10 +117,8 @@ int main(){
         dim();
         break;
         case 2:
-        matB();
         break;
         case 3:
-        matC();
         break;
         case 5:
         trans();
