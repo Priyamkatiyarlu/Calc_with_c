@@ -102,6 +102,15 @@ void printresult(int x, int y, int(*array)[y]){
         }
         printf("\n");
         }
+        printf("\n");
+         for(int i = 0 ; i < x1 ; i++)
+    {
+        for(int j = 0 ; j < y1 ; j++)
+        {
+            printf("%d   ",&arr1[i][j]);
+        }
+        printf("\n");
+    }
 }
 int matrixrc(int *x,int *y){
     printf("Enter no of rows=");
@@ -209,6 +218,22 @@ int main(){
         case 7:
         return 0;
 
+    }
+      for(int i = 0 ; i < x1 ; i++)
+    {
+        for(int j = 0 ; j < y1 ; j++)
+        {
+            printf("%d   ",arr1[i][j]);
+        }
+        printf("\n");
+    }
+        for(int i = 0 ; i < x1 ; i++)
+    {
+        for(int j = 0 ; j < y1 ; j++)
+        {
+            printf("%d   ",&arr1[i][j]);
+        }
+        printf("\n");
     }
     main();
 }
