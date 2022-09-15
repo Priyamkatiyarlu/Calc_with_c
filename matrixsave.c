@@ -4,6 +4,84 @@ int arr1[100][100];
 int arr2[100][100];
 int arr3[100][100];
 int res[100][100];
+int det(int A[100][100], int n)
+{
+    int Minor[100][100];
+    int i,j,k,c1,c2;
+    int determinant;
+    int c[100];
+    int O=1;
+
+    if(n == 2)
+    {
+        determinant = 0;
+        determinant = A[0][0]*A[1][1]-A[0][1]*A[1][0];
+        return determinant;
+    }
+    else
+    {
+        for(i = 0 ; i < n ; i++)
+        {
+            c1 = 0, c2 = 0;
+            for(j = 0 ; j < n ; j++)
+            {
+                for(k = 0 ; k < n ; k++)
+                {
+                    if(j != 0 && k != i)
+                    {
+                        Minor[c1][c2] = A[j][k];
+                        c2++;
+                        if(c2>n-2)
+                        {
+                            c1++;
+                            c2=0;
+                        }
+                    }
+                }
+            }
+            determinant = determinant + O*(A[0][i]*det(Minor,n-1));
+            O=-1*O;
+        }
+    }
+    return determinant;
+}
+void detopt(){
+    printf("1. MatA\n2. MatB\n3. matC\n");
+        int n;
+    printf("\nEnter your choice:\t");
+    scanf("%d",&n);
+    int res1,res2,res3;
+    switch(n){
+        case 1:
+        if (x1==y1){
+        res1=det(arr1,x1);
+        printf("Det of MatA:\t%d",res1);
+        }
+        else{
+            printf("Mathematical Error");
+        }
+        break;
+        case 2:
+        if (x2==y2){
+        res2=det(arr2,x2);
+        printf("Det of MatB:\t%d",res2);
+        }
+        else{
+            printf("Mathematical Error");
+        }
+        break;
+        case 3:
+        if (x2==y2){
+            res3= det(arr2,x2);
+        printf("Det of MatC:\t%d",res3);
+        }
+        else{
+            printf("Mathematical Error");
+        }
+        break;
+
+    }
+}
 
 void transmat(int x, int y,int (*array)[y]){
     int arr[x][y];
@@ -108,6 +186,7 @@ void display(){
     }
 }
 int main(){
+        printf("\n");
         printf("1. Dim\n2. Edit\n3. Mat\n4. Det\n5. Trans\n6. display\n7. Exit\n");
         int n;
     printf("\nEnter your choice:\t");
@@ -118,7 +197,8 @@ int main(){
         break;
         case 2:
         break;
-        case 3:
+        case 4:
+        detopt();
         break;
         case 5:
         trans();
