@@ -1,32 +1,24 @@
 #include <stdio.h>
-int printresult(int x,int y,int arr[100][100]){
-        for(int i=0; i<x; i++){
-        printf("\n");
-        for(int j=0; j<y; j++)
-        printf("%d\t",arr[i][j]);
-        }
-        
-    }
-   int matrixinput(int x,int y,int arr[100][100]){
-    for(int i=0; i<x; i++){
-        for(int j=0; j<y; j++){
-        printf("MatA[%d][%d]:\t",i+1,j+1);
-        scanf("%d",&arr[i][j]);
-        }
-    }
-    }
+#include<conio.h>
+#define BKSPC 8
 void edit(int arr[100][100],int x,int y){
-    printf("\t\t Original matrix \t\t");
-    printresult(x,y,arr);
-    printf("\n\n");
-    printf("\t\t Edit matrix \t\t");
-    printf("\n");
-    matrixinput(x,y,arr);
-    printf("\n\n");
-    printf("\t\t Edited matrix \t\t");
-    printresult(x,y,arr);
+    char ch;
+
+for(int i = 0 ; i < x ; i++)
+    {
+        for(int j = 0 ; j < y ; j++)
+        {
+            ch=getch();
+            printf("MatA:\t%d",arr[i][j]);
+            scanf("%d",&arr[i][j]);
+            if (ch == BKSPC){
+            printf("\b \b");
+            scanf("%d",&arr[i][j]);
+            }
+        }
     }
 
+}
 int main()
 {
     int arr1[100][100];

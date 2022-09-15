@@ -26,6 +26,50 @@ int matrixrc(int *x1,int *y1){
         }
     }
     }
+    void edit(int *x,int *y, int arr[100][100]){
+        printf("1. Edit Dimension\n2. Edit Matrix\n3. Exit\n");
+        int n;
+    printf("\nEnter your choice:\t");
+    scanf("%d",&n);
+    switch(n){
+        case 1:
+        printf("Original Dimrnsion is %d X %d.",*x,*y);
+        printf("\n\t\tEdit Dimensions.\n");
+        matrixrc(x,y);
+        case 2:
+        printf("\t\t Original matrix \t\t");
+        printresult(*x,*y,arr);
+        printf("\n\n");
+        printf("\t\t Edit matrix \t\t");
+        printf("\n");
+        matrixinput(*x,*y,arr);
+        printf("\n\n");
+        printf("\t\t Edited matrix \t\t");
+        printresult(*x,*y,arr);
+        break;
+        case 3:
+        return 0;
+
+    }
+    }
+        void editopt(){
+        printf("1. MatA\n2. MatB\n3. matC\n");
+        int n;
+    printf("\nEnter your choice:\t");
+    scanf("%d",&n);
+    switch(n){
+        case 1:
+        edit(&x1,&y1,arr1);
+        break;
+        case 2:
+        edit(&x2,&y2,arr2);
+        break;
+        case 3:
+        edit(&x3,&y3,arr3);
+        break;
+
+    }
+} 
         void dim(){
         printf("1. MatA\n2. MatB\n3. matC\n");
         int n;
@@ -80,8 +124,8 @@ int matrixrc(int *x1,int *y1){
                 res[j][i]=array[i][j];
             }
         }
-    for(int i=0;i<x;i++){
-        for(int j=0; j<y; j++){
+    for(int i=0;i<y;i++){
+        for(int j=0; j<x; j++){
                 printf("%d\t",res[i][j]);
             }
             printf("\n");
@@ -194,6 +238,7 @@ void detopt(){
         dim();
         break;
         case 2:
+        editopt();
         break;
         case 4:
         detopt();
