@@ -196,8 +196,8 @@ void matrixrc(int *x1,int *y1){
     int printmatC(){
     printresult(x3,y3,arr3);
     }
-    void display(){
-        printf("1. Display MatA\n2. Display MatB\n3.Display MatC\n");
+    int display(){
+        printf("1. Display MatA\n2. Display MatB\n3.Display MatC\n4. Exit to main menu.\n5. Exit from program.\n");
         int n;
     printf("\nEnter your choice:\t");
     scanf("%d",&n);
@@ -211,6 +211,11 @@ void matrixrc(int *x1,int *y1){
         case 3:
         printmatC();
         break;
+        case 4:
+        main();
+        break;
+        case 5:
+        return 0;
 
     }
     }
@@ -223,7 +228,7 @@ void matrixrc(int *x1,int *y1){
         }
         }
     int trans(){
-        printf("1. MatA\n2. MatB\n3. matC\n4. Exit to main menue.");
+        printf("1. MatA\n2. MatB\n3. matC\n4. Exit to main menu.\n5. Exit from program.\n");
         int n;
     printf("\nEnter your choice:\t");
     scanf("%d",&n);
@@ -241,12 +246,15 @@ void matrixrc(int *x1,int *y1){
         printresult(y3,x3,tran);
         break;
         case 4:
-        return 0;
+        main();
+        break;
+        case 5:
+        return 0;;
 
     }
 } 
 int detopt(){
-    printf("1. MatA\n2. MatB\n3. matC\n4. Exit to main menue.\n");
+    printf("1. MatA\n2. MatB\n3. matC\n4. Exit to main menu.\n5. Exit from program.\n");
         int n;
     printf("\nEnter your choice:\t");
     scanf("%d",&n);
@@ -279,11 +287,16 @@ int detopt(){
             printf("Mathematical Error");
         }
         break;
+        case 4:
+        main();
+        break;
+        case 5:
+        return 0;
 
     }
 }
     int invcall(){
-    printf("1. MatA\n2. MatB\n3. matC\n4. Exit to main menue.");
+    printf("1. MatA\n2. MatB\n3. matC\n4. Exit to main menu.\n5. Exit from program.\n");
         int n;
         float d;
     printf("\nEnter your choice:\t");
@@ -338,12 +351,15 @@ int detopt(){
         }
         break;
         case 4:
+        main();
+        break;
+        case 5:
         return 0;
 
     }
     }
     int cofactoropt(){
-        printf("1. MatA\n2. MatB\n3. matC\n4. Exit to main menu.");
+        printf("1. MatA\n2. MatB\n3. matC\n4. Exit to main menu.\n5. Exit from program.\n");
         int n;
     printf("\nEnter your choice:\t");
     scanf("%d",&n);
@@ -382,6 +398,9 @@ int detopt(){
         }
         break;
         case 4:
+        main();
+        break;
+        case 5:
         return 0;
 
     }
