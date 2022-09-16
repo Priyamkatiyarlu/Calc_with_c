@@ -5,6 +5,7 @@ float arr1[100][100];
 float arr2[100][100];
 float arr3[100][100];
 float res[100][100];
+float tran[100][100];
 float det(float A[100][100], int n)
 {
     float Minor[100][100];
@@ -46,6 +47,28 @@ float det(float A[100][100], int n)
     }
     return determinant;
 }
+float inv(float num[100][100], float b[100][100], int r){
+    float inverse[100][100], d;
+    int i, j;
+  d = det(num,r);
+  for (i = 0;i < r; i++)
+    {
+     for (j = 0;j < r; j++)
+       {
+        inverse[i][j] = b[i][j] / d;
+        }
+    }
+   printf("\n\n\nThe inverse of matrix is : \n");
+ 
+   for (i = 0;i < r; i++)
+    {
+     for (j = 0;j < r; j++)
+       {
+         printf("\t%f inv", inverse[i][j]);
+        }
+    printf("\n");
+     }
+}
 void cofactor(float num[100][100], float f)
 {
  float b[100][100], fac[100][100];
@@ -76,11 +99,12 @@ void cofactor(float num[100][100], float f)
       fac[q][p] = pow(-1, q + p) * det(b, f - 1);
     }
   }
+        printf("\n\n\t\tCofactor of matrix\t\t\n\n");
             for(i = 0 ; i < f ; i++)
     {
         for(j = 0 ; j < f ; j++)
         {
-            printf("conj %f  ",fac[i][j]);
+            printf("%.3f  ",fac[i][j]);
         }
         printf("\n");
     }   //transpose calling
@@ -202,7 +226,7 @@ void matrixrc(int *x1,int *y1){
     float res[x][y];
      for(int i=0;i<x;i++){
         for(int j=0; j<y; j++){
-                res[j][i]=array[i][j];
+                tran[j][i]=array[i][j];
             }
         }
     for(int i=0;i<y;i++){
