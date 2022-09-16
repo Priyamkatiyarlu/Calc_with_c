@@ -6,6 +6,7 @@ float arr2[100][100];
 float arr3[100][100];
 float res[100][100];
 float tran[100][100];
+float fac[100][100];
 float det(float A[100][100], int n)
 {
     float Minor[100][100];
@@ -58,20 +59,20 @@ float inv(float num[100][100], float b[100][100], int r){
         inverse[i][j] = b[i][j] / d;
         }
     }
-   printf("\n\n\nThe inverse of matrix is : \n");
+   printf("\n\n\n\t\t\tThe inverse of matrix is : \t\t\t\n");
  
    for (i = 0;i < r; i++)
     {
      for (j = 0;j < r; j++)
        {
-         printf("\t%f inv", inverse[i][j]);
+         printf("\t\t%.3f", inverse[i][j]);
         }
     printf("\n");
      }
 }
 void cofactor(float num[100][100], float f)
 {
- float b[100][100], fac[100][100];
+ float b[100][100];
  int p, q, m, n, i, j;
  for (q = 0;q < f; q++)
  {
@@ -99,15 +100,6 @@ void cofactor(float num[100][100], float f)
       fac[q][p] = pow(-1, q + p) * det(b, f - 1);
     }
   }
-        printf("\n\n\t\tCofactor of matrix\t\t\n\n");
-            for(i = 0 ; i < f ; i++)
-    {
-        for(j = 0 ; j < f ; j++)
-        {
-            printf("%.3f  ",fac[i][j]);
-        }
-        printf("\n");
-    }   //transpose calling
 }
 void printresult(int x,int y,float arr[100][100]){
         for(int i=0; i<x; i++){
@@ -229,33 +221,32 @@ void matrixrc(int *x1,int *y1){
                 tran[j][i]=array[i][j];
             }
         }
-    for(int i=0;i<y;i++){
-        for(int j=0; j<x; j++){
-                printf("%.3f\t",res[i][j]);
-            }
-            printf("\n");
         }
-        }
-    void trans(){
-        printf("1. MatA\n2. MatB\n3. matC\n");
+    int trans(){
+        printf("1. MatA\n2. MatB\n3. matC\n4. Exit to main menue.");
         int n;
     printf("\nEnter your choice:\t");
     scanf("%d",&n);
     switch(n){
         case 1:
         transmat(x1,y_1,arr1);
+        printresult(y_1,x1,tran);
         break;
         case 2:
         transmat(x2,y2,arr2);
+        printresult(y2,x2,tran);
         break;
         case 3:
         transmat(x3,y3,arr3);
+        printresult(y3,x3,tran);
         break;
+        case 4:
+        return 0;
 
     }
 } 
-void detopt(){
-    printf("1. MatA\n2. MatB\n3. matC\n");
+int detopt(){
+    printf("1. MatA\n2. MatB\n3. matC\n4. Exit to main menue.\n");
         int n;
     printf("\nEnter your choice:\t");
     scanf("%d",&n);
@@ -291,9 +282,113 @@ void detopt(){
 
     }
 }
+    int invcall(){
+    printf("1. MatA\n2. MatB\n3. matC\n4. Exit to main menue.");
+        int n;
+        float d;
+    printf("\nEnter your choice:\t");
+    scanf("%d",&n);
+    switch(n){
+        case 1:
+        if (x1==y_1){
+          d = det(arr1,x1);
+        if (d == 0){
+        printf("\nInverse of Entered Matrix is not possible\n");
+        }
+        else{
+        cofactor(arr1,x1);
+        transmat(x1,y_1,fac);
+        inv(arr1,tran,x1);
+        }
+        }
+        else{
+            printf("Mathematical Error");
+        }
+        break;
+        case 2:
+        if (x2==y2){
+        d = det(arr2,x2);
+        if (d == 0){
+        printf("\nInverse of Entered Matrix is not possible\n");
+        }
+        else{
+        cofactor(arr2,x2);
+        transmat(x2,y2,fac);
+        inv(arr2,tran,x2);
+        }
+        }
+        else{
+            printf("Mathematical Error");
+        }
+        break;
+        case 3:
+        if (x3==y3){
+        d = det(arr3,x3);
+        if (d == 0){
+        printf("\nInverse of Entered Matrix is not possible\n");
+        }
+        else{
+        cofactor(arr3,x3);
+        transmat(x3,y3,fac);
+        inv(arr3,tran,x3);
+        }
+        }
+        else{
+            printf("Mathematical Error");
+        }
+        break;
+        case 4:
+        return 0;
+
+    }
+    }
+    int cofactoropt(){
+        printf("1. MatA\n2. MatB\n3. matC\n4. Exit to main menu.");
+        int n;
+    printf("\nEnter your choice:\t");
+    scanf("%d",&n);
+    switch(n){
+        case 1:
+        if (x1==y_1){
+        cofactor(arr1,x1);
+        printf("\n\n\t\tCofactor of matrix\t\t\n\n");
+        printresult(x1,y_1,fac);
+        printf("\n\n");
+        }
+        else{
+            printf("\n\t\tMathematical error.\t\t\n");
+        }
+        break;
+        case 2:
+        if (x2==y2){
+        cofactor(arr2,x2);
+        printf("\n\n\t\tCofactor of matrix\t\t\n\n");
+        printresult(x2,y2,fac);
+        printf("\n\n");
+        }
+        else{
+            printf("\n\t\tMathematical error.\t\t\n");
+        }
+        break;
+        case 3:
+        if (x3==y3){
+        cofactor(arr3,x3);
+        printf("\n\n\t\tCofactor of matrix\t\t\n\n");
+        printresult(x3,y3,fac);
+        printf("\n\n");
+        }
+        else{
+            printf("\n\t\tMathematical error.\t\t\n");
+        }
+        break;
+        case 4:
+        return 0;
+
+    }
+}
     int main(){
         printf("\n");
-        printf("1. Dim\n2. Edit\n3. Mat\n4. Det\n5. Trans\n6. display\n7 Cofactor \n8. Exit\n");
+        printf("1. Dim\n2. Edit\n3. Mat\n4. Det\n5. Trans\n6. display\n7. Cofactor \n8. Inverse\n9. Exit\n");
         int n;
     printf("\nEnter your choice:\t");
     scanf("%d",&n);
@@ -314,8 +409,10 @@ void detopt(){
         display();
         break;
         case 7:
-        cofactor(arr1,x1);
+        cofactoropt();
         case 8:
+        invcall();
+        case 9:
         return 0;
 
     }
