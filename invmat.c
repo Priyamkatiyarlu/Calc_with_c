@@ -1,7 +1,28 @@
-#include <stdio.h>
-#include <stdlib.h>
-#include <conio.h>
+#include<stdio.h>
 #include<math.h>
+float det(float [][25], int);
+void cofactor(float [][25], float);
+void transmat(float [][25], float [][25], float);
+int main()
+{
+  float a[25][25], k, d;
+  int i, j;
+  printf("Enter the order of the Matrix : ");
+  scanf("%f", &k);
+  printf("Enter the elements of %.0fX%.0f Matrix : \n", k, k);
+  for (i = 0;i < k; i++)
+    {
+     for (j = 0;j < k; j++)
+       {
+        scanf("%f", &a[i][j]);
+        }
+    }
+  d = det(a, k);
+  if (d == 0)
+   printf("\nInverse of Entered Matrix is not possible\n");
+  else
+   cofactor(a, k);
+}
 float det(float A[25][25], int n)
 {
     float Minor[25][25];
@@ -78,26 +99,46 @@ void cofactor(float num[25][25], float f)
     {
         for(j = 0 ; j < f ; j++)
         {
-            printf("%f  ",fac[i][j]);
+            printf("conj %f  ",fac[i][j]);
         }
         printf("\n");
     }
+    transmat(num,fac,f);   //transpose calling
 }
-
-
-int main()
-{
-    float A[25][25];
-    int i,j,k,n,res;
-    printf("Enter the order of the matrix: \n");
-    scanf("%d",&n);
-    printf("\nEnter the elements of the matrix one by one: \n");
-    for(i = 0 ; i < n ; i++)
+float inv(float num[25][25], float b[25][25], float r){
+    float inverse[25][25], d;
+    int i, j;
+  d = det(num, r);
+  for (i = 0;i < r; i++)
     {
-        for(j = 0 ; j < n ; j++)
-        {
-            scanf("%d",&A[i][j]);
+     for (j = 0;j < r; j++)
+       {
+        inverse[i][j] = b[i][j] / d;
         }
     }
-    cofactor(A,n);
+   printf("\n\n\nThe inverse of matrix is : \n");
+ 
+   for (i = 0;i < r; i++)
+    {
+     for (j = 0;j < r; j++)
+       {
+         printf("\t%f inv", inverse[i][j]);
+        }
+    printf("\n");
+     }
+}
+/*Finding transpose of matrix*/ 
+void transmat(float num[25][25], float fac[25][25], float r)
+{
+  int i, j;
+  float b[25][25];
+ 
+  for (i = 0;i < r; i++)
+    {
+     for (j = 0;j < r; j++)
+       {
+         b[i][j] = fac[j][i];
+        }
+    }
+    inv(num,b,r);
 }

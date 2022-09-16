@@ -1,9 +1,90 @@
 #include<stdio.h>
-int x1,y1,x2,y2,x3,y3;
+#include<math.h>
+int x1,y_1,x2,y2,x3,y3;
 float arr1[100][100];
 float arr2[100][100];
 float arr3[100][100];
 float res[100][100];
+float det(float A[100][100], int n)
+{
+    float Minor[100][100];
+    int i,j,k,c1,c2;
+    float determinant;
+    float c[100];
+    int O=1;
+
+    if(n == 2)
+    {
+        determinant = 0;
+        determinant = A[0][0]*A[1][1]-A[0][1]*A[1][0];
+        return determinant;
+    }
+    else
+    {
+        for(i = 0 ; i < n ; i++)
+        {
+            c1 = 0, c2 = 0;
+            for(j = 0 ; j < n ; j++)
+            {
+                for(k = 0 ; k < n ; k++)
+                {
+                    if(j != 0 && k != i)
+                    {
+                        Minor[c1][c2] = A[j][k];
+                        c2++;
+                        if(c2>n-2)
+                        {
+                            c1++;
+                            c2=0;
+                        }
+                    }
+                }
+            }
+            determinant = determinant + O*(A[0][i]*det(Minor,n-1));
+            O=-1*O;
+        }
+    }
+    return determinant;
+}
+void cofactor(float num[100][100], float f)
+{
+ float b[100][100], fac[100][100];
+ int p, q, m, n, i, j;
+ for (q = 0;q < f; q++)
+ {
+   for (p = 0;p < f; p++)
+    {
+     m = 0;
+     n = 0;
+     for (i = 0;i < f; i++)
+     {
+       for (j = 0;j < f; j++)
+        {
+          if (i != q && j != p)
+          {
+            b[m][n] = num[i][j];
+            if (n < (f - 2))
+             n++;
+            else
+             {
+               n = 0;
+               m++;
+               }
+            }
+        }
+      }
+      fac[q][p] = pow(-1, q + p) * det(b, f - 1);
+    }
+  }
+            for(i = 0 ; i < f ; i++)
+    {
+        for(j = 0 ; j < f ; j++)
+        {
+            printf("conj %f  ",fac[i][j]);
+        }
+        printf("\n");
+    }   //transpose calling
+}
 void printresult(int x,int y,float arr[100][100]){
         for(int i=0; i<x; i++){
         printf("\n");
@@ -59,7 +140,7 @@ void matrixrc(int *x1,int *y1){
     scanf("%d",&n);
     switch(n){
         case 1:
-        edit(&x1,&y1,arr1);
+        edit(&x1,&y_1,arr1);
         break;
         case 2:
         edit(&x2,&y2,arr2);
@@ -77,8 +158,8 @@ void matrixrc(int *x1,int *y1){
     scanf("%d",&n);
     switch(n){
         case 1:
-        matrixrc(&x1,&y1);
-        matrixinput(x1,y1,arr1);
+        matrixrc(&x1,&y_1);
+        matrixinput(x1,y_1,arr1);
         break;
         case 2:
         matrixrc(&x2,&y2);
@@ -91,7 +172,7 @@ void matrixrc(int *x1,int *y1){
         }
         }
     int printmatA(){
-    printresult(x1,y1,arr1);
+    printresult(x1,y_1,arr1);
     }
     int printmatB(){
     printresult(x2,y2,arr2);
@@ -117,7 +198,7 @@ void matrixrc(int *x1,int *y1){
 
     }
     }
-    void transmat(int x, int y,float array[100][100]){
+    int transmat(int x, int y,float array[100][100]){
     float res[x][y];
      for(int i=0;i<x;i++){
         for(int j=0; j<y; j++){
@@ -138,7 +219,7 @@ void matrixrc(int *x1,int *y1){
     scanf("%d",&n);
     switch(n){
         case 1:
-        transmat(x1,y1,arr1);
+        transmat(x1,y_1,arr1);
         break;
         case 2:
         transmat(x2,y2,arr2);
@@ -149,47 +230,6 @@ void matrixrc(int *x1,int *y1){
 
     }
 } 
-float det(float A[100][100], int n)
-{
-    float Minor[100][100];
-    int i,j,k,c1,c2;
-    float determinant;
-    float c[100];
-    int O=1;
-
-    if(n == 2)
-    {
-        determinant = 0;
-        determinant = A[0][0]*A[1][1]-A[0][1]*A[1][0];
-        return determinant;
-    }
-    else
-    {
-        for(i = 0 ; i < n ; i++)
-        {
-            c1 = 0, c2 = 0;
-            for(j = 0 ; j < n ; j++)
-            {
-                for(k = 0 ; k < n ; k++)
-                {
-                    if(j != 0 && k != i)
-                    {
-                        Minor[c1][c2] = A[j][k];
-                        c2++;
-                        if(c2>n-2)
-                        {
-                            c1++;
-                            c2=0;
-                        }
-                    }
-                }
-            }
-            determinant = determinant + O*(A[0][i]*det(Minor,n-1));
-            O=-1*O;
-        }
-    }
-    return determinant;
-}
 void detopt(){
     printf("1. MatA\n2. MatB\n3. matC\n");
         int n;
@@ -198,7 +238,7 @@ void detopt(){
     float res1,res2,res3;
     switch(n){
         case 1:
-        if (x1==y1){
+        if (x1==y_1){
         res1=det(arr1,x1);
         printf("Det of MatA:\t%.2f",res1);
         }
@@ -229,7 +269,7 @@ void detopt(){
 }
     int main(){
         printf("\n");
-        printf("1. Dim\n2. Edit\n3. Mat\n4. Det\n5. Trans\n6. display\n7. Exit\n");
+        printf("1. Dim\n2. Edit\n3. Mat\n4. Det\n5. Trans\n6. display\n7 Cofactor \n8. Exit\n");
         int n;
     printf("\nEnter your choice:\t");
     scanf("%d",&n);
@@ -250,6 +290,8 @@ void detopt(){
         display();
         break;
         case 7:
+        cofactor(arr1,x1);
+        case 8:
         return 0;
 
     }
