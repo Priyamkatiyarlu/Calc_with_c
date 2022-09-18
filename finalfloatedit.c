@@ -1,18 +1,19 @@
 #include<stdio.h>
 #include<math.h>
+#define SIZE 100
 int x1,y_1,x2,y2,x3,y3;
-float arr1[100][100];
-float arr2[100][100];
-float arr3[100][100];
-float res[100][100];
-float tran[100][100];
-float fac[100][100];
-float det(float A[100][100], int n)
+float arr1[SIZE][SIZE];
+float arr2[SIZE][SIZE];
+float arr3[SIZE][SIZE];
+float res[SIZE][SIZE];
+float tran[SIZE][SIZE];
+float fac[SIZE][SIZE];
+float det(float A[SIZE][SIZE], int n)
 {
-    float Minor[100][100];
+    float Minor[SIZE][SIZE];
     int i,j,k,c1,c2;
     float determinant;
-    float c[100];
+    float c[SIZE];
     int O=1;
 
     if(n == 2)
@@ -48,8 +49,8 @@ float det(float A[100][100], int n)
     }
     return determinant;
 }
-float inv(float num[100][100], float b[100][100], int r){
-    float inverse[100][100], d;
+float inv(float num[SIZE][SIZE], float b[SIZE][SIZE], int r){
+    float inverse[SIZE][SIZE], d;
     int i, j;
   d = det(num,r);
   for (i = 0;i < r; i++)
@@ -70,7 +71,7 @@ float inv(float num[100][100], float b[100][100], int r){
     printf("\n");
      }
 }
-void cofactor(float num[100][100], float f)
+void cofactor(float num[SIZE][SIZE], float f)
 {
  float b[100][100];
  int p, q, m, n, i, j;
@@ -101,7 +102,7 @@ void cofactor(float num[100][100], float f)
     }
   }
 }
-void printresult(int x,int y,float arr[100][100]){
+void printresult(int x,int y,float arr[SIZE][SIZE]){
         for(int i=0; i<x; i++){
         printf("\n");
         for(int j=0; j<y; j++)
@@ -115,7 +116,7 @@ void matrixrc(int *x1,int *y1){
     printf("Enter no of columns=");
     scanf("%d",&*y1);
 }
-   void matrixinput(int x,int y,float arr[100][100]){
+   void matrixinput(int x,int y,float arr[SIZE][SIZE]){
     for(int i=0; i<x; i++){
         for(int j=0; j<y; j++){
         printf("MatA[%d][%d]:\t",i+1,j+1);
@@ -123,7 +124,7 @@ void matrixrc(int *x1,int *y1){
         }
     }
     }
-    int edit(int *x,int *y, float arr[100][100]){
+    int edit(int *x,int *y, float arr[SIZE][SIZE]){
         printf("1. Edit Dimension\n2. Edit Matrix\n3. Exit\n");
         int n;
     printf("\nEnter your choice:\t");
@@ -219,7 +220,7 @@ void matrixrc(int *x1,int *y1){
 
     }
     }
-    int transmat(int x, int y,float array[100][100]){
+    int transmat(int x, int y,float array[SIZE][SIZE]){
     float res[x][y];
      for(int i=0;i<x;i++){
         for(int j=0; j<y; j++){
