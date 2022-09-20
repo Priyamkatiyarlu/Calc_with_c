@@ -15,6 +15,9 @@ int main(){
             deci=i;
         }
     }
+    if (deci==0){
+        return 0;
+    }
  int z=-1;
  int no=0;
     double sum1;
@@ -22,15 +25,14 @@ int main(){
         if(hexa[i]>='0' && hexa[i]<='9'){
             no=hexa[i]-48;
             sum1=sum1+no*pow(16,z);
-            printf("\nhexai 0-9 %c",hexa[i]);
             z--;
+            
         }
         else if(hexa[i]>='A' && hexa[i]<='F'){
             no=hexa[i]-55;
             sum1=sum1+no*pow(16,z);
-            printf("\nhexai a-f %c",hexa[i]);
             z--;
         }
     }
-    printf("\n%lf",sum1);
+    printf("\n%0.18lf",sum1);
 }
