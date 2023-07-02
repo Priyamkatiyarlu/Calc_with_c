@@ -6,6 +6,7 @@
 #include <stdlib.h>
 #include <string.h>
 #define MAX 100
+int flag=0;
  int stack[MAX];
  char infix[MAX], postfix[MAX];
  int top=-1;
@@ -94,6 +95,7 @@ int isEmpty(){
                 case '*':
                 case '/':
                 case '^':
+                postfix[j++]=',';
                 while(!isEmpty()&&precedence(stack[top])>=precedence(symbol)){
                     postfix[j++]=pop();
                 }
@@ -109,31 +111,46 @@ int isEmpty(){
     }
     postfix[j]='\0';
  }
+ int pushf(int elem)
+{ /* Function for PUSH operation */
+  if(flag==1){
+    int num;
+    num=pop();
+    stack[++top]=elem+10*num;
+  }
+  else if(flag==0){
+    stack[++top]=elem;
+    flag=1;
+  }
+}
  postEval(){
     int i;
     int a,b;
     for(i=0;i<strlen(postfix);i++){
         if(postfix[i]>='0'&&postfix[i]<='9'){
-            push(postfix[i]-'0');
+            pushf(postfix[i]-'0');
         }
+        else if(postfix[i]==',')
+          flag=0;
         else{
+            flag=0;
             a=pop();
             b=pop();
             switch(postfix[i]){
                 case'+':
-                push(b+a);
+                pushf(b+a);
                 break;
                 case'-':
-                push(b-a);
+                pushf(b-a);
                 break;
                 case'*':
-                push(b*a);
+                pushf(b*a);
                 break;
                 case'/':
-                push(b/a);
+                pushf(b/a);
                 break;
                 case'^':
-                push(pow(b,a));
+                pushf(pow(b,a));
                 break;
             }
         }
@@ -141,7 +158,7 @@ int isEmpty(){
     return pop();
  }
 int main(){
-    printf("Enter infix expression: ");
+    printf("Enter infix expressio: ");
     gets(infix);
     inToPost();
     int result=postEval();
