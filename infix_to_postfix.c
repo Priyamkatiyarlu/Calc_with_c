@@ -161,9 +161,9 @@ int main(){
     printf("Enter infix expressio: ");
     gets(infix);
     inToPost();
-    int result=postEval();
+    //int result=postEval();
     print();
-    printf("The result after evaluation is %d\n",result);
+   // printf("The result after evaluation is %d\n",result);
     return 0;
 }
 

@@ -1,5 +1,4 @@
- #include<stdio.h>
-#include<conio.h>
+#include<stdio.h>
 #include<string.h>
 #include<math.h>
 double hex_after_float(char hexa[100]){
@@ -16,9 +15,9 @@ double hex_after_float(char hexa[100]){
  int no=0;
     double sum1;
     for(int i=deci+1; i<len1; i++){
-        if(hexa[i]>='0' && hexa[i]<='9'){
+        if(hexa[i]>='0' && hexa[i]<='8'){
             no=hexa[i]-48;
-            sum1=sum1+no*pow(16,z);
+            sum1=sum1+no*pow(8,z);
             z--;
             
         }
@@ -44,8 +43,8 @@ int main(){
     decilp=len-deci;
     }
     for(int i=decilp-1; i>=0; i--){
-        if(hexa[i]>='0' && hexa[i]<='9'){
-            sum=sum+(hexa[i]-48)*pow(16,j);
+        if(hexa[i]>='0' && hexa[i]<='8'){
+            sum=sum+(hexa[i]-48)*pow(8,j);
             j++;
         }
         else if(hexa[i]>='A' && hexa[i]<='F'){
