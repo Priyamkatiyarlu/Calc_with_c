@@ -98,6 +98,7 @@ int isEmpty(){
                 postfix[j++]=',';
                 while(!isEmpty()&&precedence(stack[top])>=precedence(symbol)){
                     postfix[j++]=pop();
+                    postfix[j++]=',';
                 }
                 push(symbol);
                 break;
